@@ -9,12 +9,12 @@ module.exports = {
   entry: "./src/index.js",
   mode: "none",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "docs"),
     filename: "[name].[contenthash:8].js",
     clean: true,
   },
   devServer: {
-    static: "./dist",
+    static: "./docs",
   },
   module: {
     rules: [
