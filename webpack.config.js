@@ -1,35 +1,31 @@
 const path = require("path");
-
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
   entry: "./src/index.js",
-  mode: "none",
   output: {
-    path: path.resolve(__dirname, "docs"),
-    filename: "[name].[contenthash:8].js",
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.js",
     clean: true,
   },
+  mode: "development",
   devServer: {
-    static: "./docs",
+    static: "./dist",
   },
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.js$/,
+        loader: "babel-loader",
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [["@babel/preset-env"], ["@babel/preset-react", { runtime: "automatic" }]],
-          },
-        },
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
         exclude: /node_modules/,
       },
@@ -37,15 +33,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      favicon: "./public/favicon.ico",
-      manifest: "./public/manifest.json",
+      template: path.resolve(__dirname, "public", "index.html"),
     }),
     new MiniCssExtractPlugin({
-      linkType: false, // 기본 값 'text/css'
+      linkType: false,
     }),
+    new BundleAnalyzerPlugin(),
   ],
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
+    runtimeChunk: "single",
   },
 };

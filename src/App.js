@@ -1,6 +1,8 @@
 import { Form, Discussions } from "./components";
 import { useEffect, useState } from "react";
 
+import { hot } from "react-hot-loader";
+
 function App() {
   const domain = "http://localhost:3001";
   const [discussions, setDiscussions] = useState([]);
@@ -59,4 +61,4 @@ function App() {
   );
 }
 
-export default App;
+export default hot(module)(App);
