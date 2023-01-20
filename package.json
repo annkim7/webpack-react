@@ -8,7 +8,9 @@
     "build:dev": "webpack --config webpack.config.dev.js",
     "build:prod": "webpack --config webpack.config.prod.js",
     "dev-server": "webpack serve --open --config webpack.config.dev.js",
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "lint": "eslint ./src",
+    "pretty": "prettier --write ./"
   },
   "repository": {
     "type": "git",
@@ -23,13 +25,18 @@
   "homepage": ".",
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^4.2.2",
+    "eslint": "^8.32.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
+    "prettier": "^2.8.3",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-bundle-analyzer": "^4.7.0",
