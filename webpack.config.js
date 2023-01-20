@@ -4,18 +4,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "docs"),
     filename: "[name].bundle.js",
     clean: true,
   },
-  mode: "development",
+  mode: "none",
   devServer: {
-    static: "./dist",
+    static: "./docs",
   },
   module: {
     rules: [
@@ -38,7 +36,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       linkType: false,
     }),
-    new BundleAnalyzerPlugin(),
   ],
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
